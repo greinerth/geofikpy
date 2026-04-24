@@ -1,11 +1,14 @@
 from __future__ import annotations
 
-import geofikpy._core as m
+import numpy as np
+
+from geofikpy import geofik
 
 
-def test_add():
-    assert m.add(2, 3) == 5
-
-
-def test_subtract():
-    assert m.subtract(7, 5) == 2
+def test_fk() -> None:
+    """Test foward kinematics
+    """
+    test = np.zeros(7, dtype=float)
+    out = geofik.franka_fk(test)
+    assert out.shape[0] == 4
+    assert out.shape[1] == 4

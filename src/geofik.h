@@ -3,7 +3,7 @@
 
 #include <array> 
 #include <vector>
-#include <eigen3/Eigen/Dense>
+#include <Eigen/Dense>
 using namespace std;
 
 constexpr double PI = 3.14159265359;
