@@ -30,7 +30,7 @@ classifiers = [
   "Typing :: Typed",
 ]
 dynamic = ["version"]
-dependencies = ["numpy", "jaxtyping"]
+dependencies = ["numpy==2.4.4", "jaxtyping"]
 
 [project.urls]
 Homepage = "https://github.com/greinerth/geofikpy"
