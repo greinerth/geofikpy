@@ -64,3 +64,15 @@ ee_pose = franka_fk(q)
 _sols, idx = franka_ik_q4(ee_pose[:3, -1], np.ravel(ee_pose[:3, :3]), -3 * np.pi / 4.0)
 sols = np.array([sol for sol in _sols if not np.any(np.isnan(sol))])
 ```
+
+## Contribute
+
+Before developing, ensure that libeigen3 is installed Using the latest
+[Eigen 5.0](https://libeigen.gitlab.io/releases/5.0/) download the contents and
+execute
+
+```bash
+tar -xf eigen-5.0.1.tar.bz2
+cd eigen-5.0.1.tar.bz2
+sudo cp -r Eigen /usr/local/include/
+```
