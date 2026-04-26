@@ -69,3 +69,21 @@ def test_ik() -> None:
             np.testing.assert_allclose(out[:3, -1], desired[:3, -1], atol=1e-6),
             f"Invalid translation. Expected {desired[:3, -1]}, got {out[:3, -1]}!",
         )
+
+    theta = geofik.franka_swivel(q)
+
+    _sols, idx = geofik.franka_ik_swivel(
+        desired[:3, -1], np.ravel(desired[:3, :3]), theta
+    )
+    sols = np.array([sol for sol in _sols if not np.any(np.isnan(sol))])
+
+    for sol in sols:
+        out = geofik.franka_fk(sol)
+        (
+            np.testing.assert_allclose(out[:3, :3], desired[:3, :3], atol=1e-6),
+            f"Invalid rotation. Expected {desired[:3, :3]}, got {out[:3, :3]}!",
+        )
+        (
+            np.testing.assert_allclose(out[:3, -1], desired[:3, -1], atol=1e-6),
+            f"Invalid translation. Expected {desired[:3, -1]}, got {out[:3, -1]}!",
+        )
