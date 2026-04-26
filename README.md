@@ -33,9 +33,11 @@
 Python wrapper for [GeoFIK](https://github.com/PabloLopezCustodio/GeoFIK) C++
 library. The wrapped functions behave almost the same as the original
 implementation; there are some exceptions. The C++ library here is compiled
-against [Eigen 5.0](https://libeigen.gitlab.io/releases/5.0/).
+against [Eigen 5.0](https://libeigen.gitlab.io/releases/5.0/). For further
+details checkout the preprint of the paper
+[here](https://arxiv.org/abs/2503.03992v1).
 
-## Install
+## Installation
 
 To install the package simply execute the following command:
 
