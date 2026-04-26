@@ -65,14 +65,28 @@ _sols, idx = franka_ik_q4(ee_pose[:3, -1], np.ravel(ee_pose[:3, :3]), -3 * np.pi
 sols = np.array([sol for sol in _sols if not np.any(np.isnan(sol))])
 ```
 
-## Contribute
+## Development Environment
 
-Before developing, ensure that libeigen3 is installed Using the latest
-[Eigen 5.0](https://libeigen.gitlab.io/releases/5.0/) download the contents and
+Before developing, ensure that libeigen3 is installed. Using the latest
+[Eigen 5.0](https://libeigen.gitlab.io/releases/5.0/), download the contents and
 execute
 
 ```bash
 tar -xf eigen-5.0.1.tar.bz2
 cd eigen-5.0.1.tar.bz2
 sudo cp -r Eigen /usr/local/include/
+```
+
+For development a virtual environment is recommendend such as
+[uv](https://docs.astral.sh/uv/getting-started/installation/). Within the
+virtual envronenment navigate to the project directory and execute
+
+```bash
+uv pip install -e . --group dev
+```
+
+To execute the unit tests run
+
+```bash
+nox -s tests
 ```
