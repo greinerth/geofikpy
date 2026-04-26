@@ -30,7 +30,7 @@ classifiers = [
   "Typing :: Typed",
 ]
 dynamic = ["version"]
-dependencies = []
+dependencies = ["numpy>=2", "jaxtyping"]
 
 [project.urls]
 Homepage = "https://github.com/greinerth/geofikpy"
@@ -41,11 +41,11 @@ Changelog = "https://github.com/greinerth/geofikpy/releases"
 
 [dependency-groups]
 test = [
-  "pytest >=9",
-  "pytest-cov >=7",
+  "pytest>=9",
+  "pytest-cov>=7",
 ]
 dev = [
-  { include-group = "test" },
+  { include-group = "test" }, "pre-commit", "pybind11-stubgen", "nox"
 ]
 docs = [
   "sphinx>=7.0",
@@ -68,8 +68,10 @@ write_to = "src/geofikpy/_version.py"
 
 
 [tool.cibuildwheel]
+skip = ["*win32", "*i686"]
+test-skip = ["*win_arm64"]
 test-command = "pytest {project}/tests"
-test-extras = ["test"]
+test-requires = ["pytest>=9"]
 
 
 [tool.pytest]
@@ -78,6 +80,7 @@ addopts = ["-ra", "--showlocals"]
 strict = true
 filterwarnings = [
   "error",
+  "ignore:The global interpreter lock:RuntimeWarning",
 ]
 log_level = "INFO"
 testpaths = [
@@ -101,6 +104,7 @@ enable_error_code = ["ignore-without-code", "redundant-expr", "truthy-bool"]
 warn_unreachable = true
 disallow_untyped_defs = false
 disallow_incomplete_defs = false
+ignore_missing_imports = true
 
 [[tool.mypy.overrides]]
 module = "geofikpy.*"
@@ -164,7 +168,7 @@ ignore = [
 
 [tool.pylint]
 py-version = "3.10"
-ignore-paths = [".*/_version.py"]
+ignore-paths = [".*/_version.py", ".*\\.pyi$"]
 extension-pkg-allow-list = ["geofikpy._core"]
 reports.output-format = "colorized"
 similarities.ignore-imports = "yes"
@@ -175,4 +179,10 @@ messages_control.disable = [
   "missing-module-docstring",
   "missing-function-docstring",
   "wrong-import-position",
+  "import-error",
+  "import-self",
+  "invalid-name",
+  "no-name-in-module",
+  "undefined-variable",
+  "unused-argument",
 ]

@@ -14,6 +14,8 @@ from pathlib import Path
 
 import nox
 
+py_version = ["3.10", "3.11", "3.12", "3.13", "3.14"]
+
 DIR = Path(__file__).parent.resolve()
 PROJECT = nox.project.load_toml()
 
@@ -43,7 +45,7 @@ def pylint(session: nox.Session) -> None:
     session.run("pylint", "geofikpy", *session.posargs)
 
 
-@nox.session
+@nox.session(python=py_version)
 def tests(session: nox.Session) -> None:
     """
     Run the unit and regular tests.
