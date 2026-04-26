@@ -120,7 +120,7 @@ py::object _franka_J_ik_swivel(
   return py::cast(std::make_tuple(Jsols, sol));
 }
 
-PYBIND11_MODULE(geofik, m) {
+PYBIND11_MODULE(_core, m) {
   m.doc() = "Python wrapper for GeoFIK C++ library";
   m.def("J_to_q", &J_to_q, py::arg("J"), py::arg("R"), py::arg("ee"),
         R"delim(
