@@ -30,7 +30,7 @@ classifiers = [
   "Typing :: Typed",
 ]
 dynamic = ["version"]
-dependencies = ["numpy==2.4.4", "jaxtyping==0.3.9"]
+dependencies = ["numpy>=2", "jaxtyping"]
 
 [project.urls]
 Homepage = "https://github.com/greinerth/geofikpy"
@@ -68,6 +68,8 @@ write_to = "src/geofikpy/_version.py"
 
 
 [tool.cibuildwheel]
+skip = ["*win32", "*i686"]
+test-skip = ["*win_arm64"]
 test-command = "pytest {project}/tests"
 test-requires = ["pytest >=9"]
 

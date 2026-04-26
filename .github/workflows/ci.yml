@@ -36,7 +36,7 @@ jobs:
         shell: bash
         run: |
           curl -sL "https://gitlab.com/libeigen/eigen/-/archive/5.0.0/eigen-5.0.0.tar.gz" -o eigen.tar.gz
-          mkdir eigen-src
+          mkdir -p eigen-src
           tar -xzf eigen.tar.gz -C eigen-src --strip-components=1
           cmake -S eigen-src -B build_eigen -DBUILD_TESTING=OFF
           if [ "$RUNNER_OS" = "Windows" ]; then
@@ -82,7 +82,7 @@ jobs:
         shell: bash
         run: |
           curl -sL "https://gitlab.com/libeigen/eigen/-/archive/5.0.0/eigen-5.0.0.tar.gz" -o eigen.tar.gz
-          mkdir eigen-src
+          mkdir -p eigen-src
           tar -xzf eigen.tar.gz -C eigen-src --strip-components=1
           cmake -S eigen-src -B build_eigen -DBUILD_TESTING=OFF
           if [ "$RUNNER_OS" = "Windows" ]; then
