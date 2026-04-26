@@ -34,7 +34,9 @@ jobs:
           mkdir eigen-src
           tar -xzf eigen.tar.gz -C eigen-src --strip-components=1
           cmake -S eigen-src -B build_eigen -DBUILD_TESTING=OFF
-          if command -v sudo >/dev/null 2>&1; then
+          if [ "$RUNNER_OS" = "Windows" ]; then
+            cmake --build build_eigen --target install
+          elif command -v sudo >/dev/null 2>&1; then
             sudo cmake --build build_eigen --target install
           else
             cmake --build build_eigen --target install
@@ -76,7 +78,9 @@ jobs:
           mkdir eigen-src
           tar -xzf eigen.tar.gz -C eigen-src --strip-components=1
           cmake -S eigen-src -B build_eigen -DBUILD_TESTING=OFF
-          if command -v sudo >/dev/null 2>&1; then
+          if [ "$RUNNER_OS" = "Windows" ]; then
+            cmake --build build_eigen --target install
+          elif command -v sudo >/dev/null 2>&1; then
             sudo cmake --build build_eigen --target install
           else
             cmake --build build_eigen --target install
@@ -85,7 +89,10 @@ jobs:
       - uses: pypa/cibuildwheel@v3.4
         env:
           CIBW_BEFORE_ALL_LINUX: >
-            curl -sL
+            if command -v apk >/dev/null 2>&1; then apk add --no-cache cmake;
+            elif command -v apt-get >/dev/null 2>&1; then apt-get update &&
+            apt-get install -y cmake; elif command -v dnf >/dev/null 2>&1; then
+            dnf install -y cmake; else yum install -y cmake; fi && curl -sL
             "https://gitlab.com/libeigen/eigen/-/archive/5.0.0/eigen-5.0.0.tar.gz"
             -o eigen.tar.gz && mkdir eigen-src && tar -xzf eigen.tar.gz -C
             eigen-src --strip-components=1 && cmake -S eigen-src -B build_eigen

@@ -39,7 +39,9 @@ jobs:
           mkdir eigen-src
           tar -xzf eigen.tar.gz -C eigen-src --strip-components=1
           cmake -S eigen-src -B build_eigen -DBUILD_TESTING=OFF
-          if command -v sudo >/dev/null 2>&1; then
+          if [ "$RUNNER_OS" = "Windows" ]; then
+            cmake --build build_eigen --target install
+          elif command -v sudo >/dev/null 2>&1; then
             sudo cmake --build build_eigen --target install
           else
             cmake --build build_eigen --target install
@@ -83,7 +85,9 @@ jobs:
           mkdir eigen-src
           tar -xzf eigen.tar.gz -C eigen-src --strip-components=1
           cmake -S eigen-src -B build_eigen -DBUILD_TESTING=OFF
-          if command -v sudo >/dev/null 2>&1; then
+          if [ "$RUNNER_OS" = "Windows" ]; then
+            cmake --build build_eigen --target install
+          elif command -v sudo >/dev/null 2>&1; then
             sudo cmake --build build_eigen --target install
           else
             cmake --build build_eigen --target install
