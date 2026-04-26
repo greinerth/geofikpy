@@ -164,7 +164,7 @@ PYBIND11_MODULE(_core, m) {
 
         Args:
           r (np.ndarray[float]): position of frame E with respect to frame O.
-          ROE (np.ndarray[float, float]): rotation matrix of frame E with respect to frame O (row-first format).
+          ROE (np.ndarray[float]): Flattened rotation matrix of frame E with respect to frame O (row-first format).
           q4 (np.ndarray[float]): joint angle of joint 4 (radians)
           qsols: array to store 8 solutions
           q1_sing (float, optional): emergency value of q1 in case of singularity at shoulder joints (type-1 singularity), defaults to PI/2
@@ -180,7 +180,7 @@ PYBIND11_MODULE(_core, m) {
 
         Args:
           r (np.ndarray[float]): position of frame E with respect to frame O.
-          ROE (np.ndarray[float, float]): rotation matrix of frame E with respect to frame O (row-first format).
+          ROE (np.ndarray[float]): Flattened rotation matrix of frame E with respect to frame O (row-first format).
           q6 (np.ndarray[float]): joint angle of joint 4 (radians)
           qsols: array to store 8 solutions
           q1_sing (float, optional): emergency value of q1 in case of singularity at shoulder joints (type-1 singularity), defaults to PI/2
@@ -196,7 +196,7 @@ PYBIND11_MODULE(_core, m) {
 
         Args:
           r (np.ndarray[float]): position of frame E with respect to frame O.
-          ROE (np.ndarray[float, float]): rotation matrix of frame E with respect to frame O (row-first format).
+          ROE (np.ndarray[float]): Flattened rotation matrix of frame E with respect to frame O (row-first format).
           q7 (np.ndarray[float]): joint angle of joint 7 (radians)
           qsols: array to store 8 solutions
           q1_sing (float, optional): emergency value of q1 in case of singularity at shoulder joints (type-1 singularity), defaults to PI/2
@@ -212,7 +212,7 @@ PYBIND11_MODULE(_core, m) {
 
         Args:
           r (np.ndarray[float]): position of frame E with respect to frame O.
-          ROE (np.ndarray[float, float]): rotation matrix of frame E with respect to frame O (row-first format).
+          ROE (np.ndarray[float]): Flattened rotation matrix of frame E with respect to frame O (row-first format).
           theta (np.ndarray[float]): swivel angle (radians)
           q1_sing (float, optional): emergency value of q1 in case of singularity at shoulder joints (type-1 singularity), defaults to PI/2
           n_points (int, optional): number of points to discretise the range of q7, defaults to 500
@@ -239,7 +239,7 @@ PYBIND11_MODULE(_core, m) {
 
         Args:
           r (np.ndarray[float]): position of frame E with respect to frame O.
-          ROE (np.ndarray[float, float]): Rotation matrix of frame E with respect to frame O (row-first format).
+          ROE (np.ndarray[float]): Flattened rotation matrix of frame E with respect to frame O (row-first format).
           q7 (float): joint angle of joint 7 (radians)
           joint_angles (bool, optional): if false only Jacobians are returned, else the joint angles are also returned, defaults to False
           Jacobian_ee (char, optional): ee frame of the Jacobian, not the IK ('E', 'F', '8' or '6'), defaults to 'E'
@@ -257,7 +257,7 @@ PYBIND11_MODULE(_core, m) {
 
         Args:
           r (np.ndarray[float]): position of frame E with respect to frame O.
-          ROE (np.ndarray[float, float]): Rotation matrix of frame E with respect to frame O (row-first format).
+          ROE (np.ndarray[float]): Flattened rotation matrix of frame E with respect to frame O (row-first format).
           q4 (float): joint angle of joint 4 (radians)
           joint_angles (bool, optional): if false only Jacobians are returned, else the joint angles are also returned, defaults to False
           Jacobian_ee (char, optional): ee frame of the Jacobian, not the IK ('E', 'F', '8' or '6'), defaults to 'E'
@@ -275,7 +275,7 @@ PYBIND11_MODULE(_core, m) {
 
         Args:
           r (np.ndarray[float]): position of frame E with respect to frame O.
-          ROE (np.ndarray[float, float]): Rotation matrix of frame E with respect to frame O (row-first format).
+          ROE (np.ndarray[float]): Flattened rotation matrix of frame E with respect to frame O (row-first format).
           q6 (float): joint angle of joint 6 (radians)
           joint_angles (bool, optional): if false only Jacobians are returned, else the joint angles are also returned, defaults to False
           Jacobian_ee (char, optional): ee frame of the Jacobian, not the IK ('E', 'F', '8' or '6'), defaults to 'E'
@@ -294,7 +294,7 @@ PYBIND11_MODULE(_core, m) {
 
         Args:
           r (np.ndarray[float]): position of frame E with respect to frame O.
-          ROE (np.ndarray[float, float]): Rotation matrix of frame E with respect to frame O (row-first format).
+          ROE (np.ndarray[float]): Flattened rotation matrix of frame E with respect to frame O (row-first format).
           theta (float): swivel angle (radians)
           joint_angles (bool, optional): if false only Jacobians are returned, else the joint angles are also returned, defaults to False
           Jacobian_ee (char, optional): ee frame of the Jacobian, not the IK ('E', 'F', '8' or '6'), defaults to 'E'

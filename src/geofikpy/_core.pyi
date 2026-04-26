@@ -15,27 +15,27 @@ def franka_fk(
 ) -> Float[Array, "4 4"]: ...  # noqa: F722
 def franka_ik_q4(
     r: Float[Array, 3],
-    ROE: Float[Array, "3 3"],  # noqa: F722
+    ROE: Float[Array, 9],
     q4: float,
     q1_sing: float = ...,
     q7_sing: float = 0.0,
 ) -> tuple[list[list[float]], int]: ...
 def franka_ik_q6(
     r: Float[Array, 3],
-    ROE: Float[Array, "3 3"],  # noqa: F722
+    ROE: Float[Array, 9],
     q6: float,
     q1_sing: float = ...,
     q7_sing: float = 0.0,
 ) -> tuple[list[list[float]], int]: ...
 def franka_ik_q7(
     r: Float[Array, 3],
-    ROE: Float[Array, "3 3"],  # noqa: F722
+    ROE: Float[Array, 9],
     q7: float,
     q1_sing: float = ...,
 ) -> tuple[list[list[float]], int]: ...
 def franka_ik_swivel(
     r: Float[Array, 3],
-    ROE: Float[Array, "3 3"],  # noqa: F722
+    ROE: Float[Array, 9],
     theta: float,
     q1_sing: float = ...,
     n_points: int = 500,
@@ -45,7 +45,7 @@ def franka_swivel(q: Float[Array, 7]) -> float: ...
 @overload
 def franka_J_ik_q4(
     r: Float[Array, 3],
-    ROE: Float[Array, "3 3"],  # noqa: F722
+    ROE: Float[Array, 9],
     q4: float,
     joint_angles: Literal[True],
     Jacobian_ee: Literal["E", "F", "8"] = "E",
@@ -54,7 +54,7 @@ def franka_J_ik_q4(
 @overload
 def franka_J_ik_q4(
     r: Float[Array, 3],
-    ROE: Float[Array, "3 3"],  # noqa: F722
+    ROE: Float[Array, 9],
     q4: float,
     joint_angles: Literal[False] = False,
     Jacobian_ee: Literal["E", "F", "8"] = "E",
@@ -63,7 +63,7 @@ def franka_J_ik_q4(
 @overload
 def franka_J_ik_q4(
     r: Float[Array, 3],
-    ROE: Float[Array, "3 3"],  # noqa: F722
+    ROE: Float[Array, 9],
     q4: float,
     joint_angles: bool,
     Jacobian_ee: Literal["E", "F", "8"] = "E",
@@ -75,7 +75,7 @@ def franka_J_ik_q4(
 @overload
 def franka_J_ik_q6(
     r: Float[Array, 3],
-    ROE: Float[Array, "3 3"],  # noqa: F722
+    ROE: Float[Array, 9],
     q6: float,
     joint_angles: Literal[True],
     Jacobian_ee: Literal["E", "F", "8"] = "E",
@@ -84,7 +84,7 @@ def franka_J_ik_q6(
 @overload
 def franka_J_ik_q6(
     r: Float[Array, 3],
-    ROE: Float[Array, "3 3"],  # noqa: F722
+    ROE: Float[Array, 9],
     q6: float,
     joint_angles: Literal[False] = False,
     Jacobian_ee: Literal["E", "F", "8"] = "E",
@@ -93,7 +93,7 @@ def franka_J_ik_q6(
 @overload
 def franka_J_ik_q6(
     r: Float[Array, 3],
-    ROE: Float[Array, "3 3"],  # noqa: F722
+    ROE: Float[Array, 9],
     q6: float,
     joint_angles: bool,
     Jacobian_ee: Literal["E", "F", "8"] = "E",
@@ -105,7 +105,7 @@ def franka_J_ik_q6(
 @overload
 def franka_J_ik_q7(
     r: Float[Array, 3],
-    ROE: Float[Array, "3 3"],  # noqa: F722
+    ROE: Float[Array, 9],
     q7: float,
     joint_angles: Literal[True],
     Jacobian_ee: Literal["E", "F", "8"] = "E",
@@ -114,7 +114,7 @@ def franka_J_ik_q7(
 @overload
 def franka_J_ik_q7(
     r: Float[Array, 3],
-    ROE: Float[Array, "3 3"],  # noqa: F722
+    ROE: Float[Array, 9],
     q7: float,
     joint_angles: Literal[False] = False,
     Jacobian_ee: Literal["E", "F", "8"] = "E",
@@ -135,7 +135,7 @@ def franka_J_ik_q7(
 @overload
 def franka_J_ik_swivel(
     r: Float[Array, 3],
-    ROE: Float[Array, "3 3"],  # noqa: F722
+    ROE: Float[Array, 9],
     theta: float,
     joint_angles: Literal[True],
     Jacobian_ee: Literal["E", "F", "8"] = "E",
@@ -146,7 +146,7 @@ def franka_J_ik_swivel(
 @overload
 def franka_J_ik_swivel(
     r: Float[Array, 3],
-    ROE: Float[Array, "3 3"],  # noqa: F722
+    ROE: Float[Array, 9],
     theta: float,
     joint_angles: Literal[False] = False,
     Jacobian_ee: Literal["E", "F", "8"] = "E",
@@ -157,7 +157,7 @@ def franka_J_ik_swivel(
 @overload
 def franka_J_ik_swivel(
     r: Float[Array, 3],
-    ROE: Float[Array, "3 3"],  # noqa: F722
+    ROE: Float[Array, 9],
     theta: float,
     joint_angles: bool,
     Jacobian_ee: Literal["E", "F", "8"] = "E",

@@ -29,3 +29,8 @@
 [coverage-link]:            https://codecov.io/github/greinerth/geofikpy
 
 <!-- prettier-ignore-end -->
+
+Python wrapper for [GeoFIK](https://github.com/PabloLopezCustodio/GeoFIK) C++
+library. The wrapped functions behave almost the same as the original
+implementation; there are some exceptions. The C++ library here is compiled
+against [Eigen 5.0](https://libeigen.gitlab.io/releases/5.0/).
