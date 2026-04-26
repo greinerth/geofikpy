@@ -168,7 +168,7 @@ ignore = [
 
 [tool.pylint]
 py-version = "3.10"
-ignore-paths = [".*/_version.py"]
+ignore-paths = [".*/_version.py", ".*\\.pyi$"]
 extension-pkg-allow-list = ["geofikpy._core"]
 reports.output-format = "colorized"
 similarities.ignore-imports = "yes"
@@ -179,4 +179,10 @@ messages_control.disable = [
   "missing-module-docstring",
   "missing-function-docstring",
   "wrong-import-position",
+  "import-error",
+  "import-self",
+  "invalid-name",
+  "no-name-in-module",
+  "undefined-variable",
+  "unused-argument",
 ]

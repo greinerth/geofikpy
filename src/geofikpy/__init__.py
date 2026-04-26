@@ -26,7 +26,7 @@ __all__ = [
     "J_from_q",
     "J_to_q",
     "__version__",
-    "_core",
+    "_core",  # pylint: disable=undefined-all-variable
     "franka_J_ik_q4",
     "franka_J_ik_q6",
     "franka_J_ik_q7",
