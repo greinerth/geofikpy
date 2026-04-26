@@ -5,7 +5,7 @@ geofikpy: Python wrapper for GeoFIK C++ library
 
 from __future__ import annotations
 
-from . import geofik
+from . import geofik as geofik
 from ._version import version as __version__
 from .geofik import (
     J_from_q,

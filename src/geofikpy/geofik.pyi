@@ -1,4 +1,4 @@
-from typing import Literal
+from typing import Literal, overload
 
 from jaxtyping import Array, Float
 
@@ -42,44 +42,124 @@ def franka_ik_swivel(
     n_fine_search: int = 3,
 ) -> tuple[list[list[float]], int]: ...
 def franka_swivel(q: Float[Array, 7]) -> float: ...
+@overload
 def franka_J_ik_q4(
     r: Float[Array, 3],
     ROE: Float[Array, "3 3"],  # noqa: F722
     q4: float,
-    joint_angles: bool = False,
+    joint_angles: Literal[True],
+    Jacobian_ee: Literal["E", "F", "8"] = "E",
+    q1_sing: float = ...,
+) -> tuple[list[list[list[float]]], list[list[float]], int]: ...
+@overload
+def franka_J_ik_q4(
+    r: Float[Array, 3],
+    ROE: Float[Array, "3 3"],  # noqa: F722
+    q4: float,
+    joint_angles: Literal[False] = False,
+    Jacobian_ee: Literal["E", "F", "8"] = "E",
+    q1_sing: float = ...,
+) -> tuple[list[list[list[float]]], int]: ...
+@overload
+def franka_J_ik_q4(
+    r: Float[Array, 3],
+    ROE: Float[Array, "3 3"],  # noqa: F722
+    q4: float,
+    joint_angles: bool,
     Jacobian_ee: Literal["E", "F", "8"] = "E",
     q1_sing: float = ...,
 ) -> (
     tuple[list[list[list[float]]], list[list[float]], int]
     | tuple[list[list[list[float]]], int]
 ): ...
+@overload
 def franka_J_ik_q6(
     r: Float[Array, 3],
     ROE: Float[Array, "3 3"],  # noqa: F722
     q6: float,
-    joint_angles: bool = False,
+    joint_angles: Literal[True],
+    Jacobian_ee: Literal["E", "F", "8"] = "E",
+    q1_sing: float = ...,
+) -> tuple[list[list[list[float]]], list[list[float]], int]: ...
+@overload
+def franka_J_ik_q6(
+    r: Float[Array, 3],
+    ROE: Float[Array, "3 3"],  # noqa: F722
+    q6: float,
+    joint_angles: Literal[False] = False,
+    Jacobian_ee: Literal["E", "F", "8"] = "E",
+    q1_sing: float = ...,
+) -> tuple[list[list[list[float]]], int]: ...
+@overload
+def franka_J_ik_q6(
+    r: Float[Array, 3],
+    ROE: Float[Array, "3 3"],  # noqa: F722
+    q6: float,
+    joint_angles: bool,
     Jacobian_ee: Literal["E", "F", "8"] = "E",
     q1_sing: float = ...,
 ) -> (
     tuple[list[list[list[float]]], list[list[float]], int]
     | tuple[list[list[list[float]]], int]
 ): ...
+@overload
 def franka_J_ik_q7(
     r: Float[Array, 3],
     ROE: Float[Array, "3 3"],  # noqa: F722
     q7: float,
-    joint_angles: bool = False,
+    joint_angles: Literal[True],
+    Jacobian_ee: Literal["E", "F", "8"] = "E",
+    q1_sing: float = ...,
+) -> tuple[list[list[list[float]]], list[list[float]], int]: ...
+@overload
+def franka_J_ik_q7(
+    r: Float[Array, 3],
+    ROE: Float[Array, "3 3"],  # noqa: F722
+    q7: float,
+    joint_angles: Literal[False] = False,
+    Jacobian_ee: Literal["E", "F", "8"] = "E",
+    q1_sing: float = ...,
+) -> tuple[list[list[list[float]]], int]: ...
+@overload
+def franka_J_ik_q7(
+    r: Float[Array, 3],
+    ROE: Float[Array, "3 3"],  # noqa: F722
+    q7: float,
+    joint_angles: bool,
     Jacobian_ee: Literal["E", "F", "8"] = "E",
     q1_sing: float = ...,
 ) -> (
     tuple[list[list[list[float]]], list[list[float]], int]
     | tuple[list[list[list[float]]], int]
 ): ...
+@overload
 def franka_J_ik_swivel(
     r: Float[Array, 3],
     ROE: Float[Array, "3 3"],  # noqa: F722
     theta: float,
-    joint_angles: bool = False,
+    joint_angles: Literal[True],
+    Jacobian_ee: Literal["E", "F", "8"] = "E",
+    q1_sing: float = ...,
+    n_points: int = 600,
+    n_fine_search: int = 3,
+) -> tuple[list[list[list[float]]], list[list[float]], int]: ...
+@overload
+def franka_J_ik_swivel(
+    r: Float[Array, 3],
+    ROE: Float[Array, "3 3"],  # noqa: F722
+    theta: float,
+    joint_angles: Literal[False] = False,
+    Jacobian_ee: Literal["E", "F", "8"] = "E",
+    q1_sing: float = ...,
+    n_points: int = 600,
+    n_fine_search: int = 3,
+) -> tuple[list[list[list[float]]], int]: ...
+@overload
+def franka_J_ik_swivel(
+    r: Float[Array, 3],
+    ROE: Float[Array, "3 3"],  # noqa: F722
+    theta: float,
+    joint_angles: bool,
     Jacobian_ee: Literal["E", "F", "8"] = "E",
     q1_sing: float = ...,
     n_points: int = 600,
