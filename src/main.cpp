@@ -246,8 +246,8 @@ PYBIND11_MODULE(_core, m) {
           q1_sing (float, optional):  emergency value of q1 in case of singularity at shoulder joints (type-1 singularity)
 
         Returns:
-          result (tuple[list[list[list[float]]], list[list[float], int]: Returns Jacobians, joint angles and number of solutions if joint_angles is True
-                else returns Jacobians and number of solutions if joint_angles is False
+          result (tuple[list[list[list[float]]], list[list[float]], int] | tuple[list[list[list[float]]], int]): Returns Jacobians, joint angles and number of solutions if joint_angles is True
+              else returns Jacobians and number of solutions if joint_angles is False
         )delim");
   m.def("franka_J_ik_q4", &_franka_J_ik_q4, py::arg("r"), py::arg("ROE"),
         py::arg("q4"), py::arg("joint_angles") = false,
@@ -264,8 +264,8 @@ PYBIND11_MODULE(_core, m) {
           q1_sing (float, optional):  emergency value of q1 in case of singularity at shoulder joints (type-1 singularity)
 
         Returns:
-          result (tuple[list[list[list[float]]], list[list[float], int]: Returns Jacobians, joint angles and number of solutions if joint_angles is True
-                else returns Jacobians and number of solutions if joint_angles is False
+          result (tuple[list[list[list[float]]], list[list[float]], int] | tuple[list[list[list[float]]], int]): Returns Jacobians, joint angles and number of solutions if joint_angles is True
+              else returns Jacobians and number of solutions if joint_angles is False
         )delim");
   m.def("franka_J_ik_q6", &_franka_J_ik_q6, py::arg("r"), py::arg("ROE"),
         py::arg("q6"), py::arg("joint_angles") = false,
@@ -282,8 +282,8 @@ PYBIND11_MODULE(_core, m) {
           q1_sing (float, optional):  emergency value of q1 in case of singularity at shoulder joints (type-1 singularity)
 
         Returns:
-          result (tuple[list[list[list[float]]], list[list[float], int]: Returns Jacobians, joint angles and number of solutions if joint_angles is True
-                else returns Jacobians and number of solutions if joint_angles is False
+          result (tuple[list[list[list[float]]], list[list[float]], int] | tuple[list[list[list[float]]], int]): Returns Jacobians, joint angles and number of solutions if joint_angles is True
+              else returns Jacobians and number of solutions if joint_angles is False
         )delim");
   m.def("franka_J_ik_swivel", &_franka_J_ik_swivel, py::arg("r"),
         py::arg("ROE"), py::arg("theta"), py::arg("joint_angles") = false,
@@ -301,7 +301,7 @@ PYBIND11_MODULE(_core, m) {
           q1_sing (float, optional):  emergency value of q1 in case of singularity at shoulder joints (type-1 singularity)
 
         Returns:
-          result (tuple[np.ndarray[float, float, float], np.ndarray[float, float], int): Returns Jacobians, joint angles and number of solutions if joint_angles is True
-                else returns Jacobians and number of solutions if joint_angles is False
+          result (tuple[list[list[list[float]]], list[list[float]], int] | tuple[list[list[list[float]]], int]): Returns Jacobians, joint angles and number of solutions if joint_angles is True
+              else returns Jacobians and number of solutions if joint_angles is False
         )delim");
 }
