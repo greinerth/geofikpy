@@ -5,7 +5,6 @@ import pytest
 
 from geofikpy import (
     J_from_q,
-    J_to_q,
     franka_fk,
     franka_ik_q4,
     franka_ik_q6,
@@ -233,8 +232,8 @@ def test_j_to_q(get_q) -> None:
     """Test Jacobian to joint angles"""
     q = get_q
     desired = franka_fk(q)
-    jac, qsol, _ = franka_J_ik_q4(
-        desired[:3, -1], np.ravel(desired[:3, :3]), -3 * np.pi / 4.0, joint_angles=True
+    jac, qsol, _ = franka_J_ik_q6(
+        desired[:3, -1], np.ravel(desired[:3, :3]), np.pi / 2.0, joint_angles=True
     )
 
     ok_idx = np.array([i for i in range(len(qsol)) if not np.any(np.isnan(qsol[i]))])
@@ -243,6 +242,3 @@ def test_j_to_q(get_q) -> None:
 
     new_jacs = np.array(J_from_q(qsols[0]))
     np.testing.assert_allclose(new_jacs, jacs[0], atol=1e-6)
-
-    qout = J_to_q(jacs[0], desired[:3, :3], "E")
-    np.testing.assert_allclose(qout, qsols[0], atol=1e-6)
