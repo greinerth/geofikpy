@@ -38,14 +38,9 @@ jobs:
           curl -sL "https://gitlab.com/libeigen/eigen/-/archive/5.0.0/eigen-5.0.0.tar.gz" -o eigen.tar.gz
           mkdir -p eigen-src
           tar -xzf eigen.tar.gz -C eigen-src --strip-components=1
-          cmake -S eigen-src -B build_eigen -DBUILD_TESTING=OFF
-          if [ "$RUNNER_OS" = "Windows" ]; then
-            cmake --build build_eigen --target install
-          elif command -v sudo >/dev/null 2>&1; then
-            sudo cmake --build build_eigen --target install
-          else
-            cmake --build build_eigen --target install
-          fi
+          cmake -S eigen-src -B build_eigen -DBUILD_TESTING=OFF -DCMAKE_INSTALL_PREFIX="$RUNNER_TEMP/eigen"
+          cmake --build build_eigen --target install
+          echo "CMAKE_PREFIX_PATH=$RUNNER_TEMP/eigen" >> "$GITHUB_ENV"
 
       - uses: j178/prek-action@v2
 
@@ -84,14 +79,9 @@ jobs:
           curl -sL "https://gitlab.com/libeigen/eigen/-/archive/5.0.0/eigen-5.0.0.tar.gz" -o eigen.tar.gz
           mkdir -p eigen-src
           tar -xzf eigen.tar.gz -C eigen-src --strip-components=1
-          cmake -S eigen-src -B build_eigen -DBUILD_TESTING=OFF
-          if [ "$RUNNER_OS" = "Windows" ]; then
-            cmake --build build_eigen --target install
-          elif command -v sudo >/dev/null 2>&1; then
-            sudo cmake --build build_eigen --target install
-          else
-            cmake --build build_eigen --target install
-          fi
+          cmake -S eigen-src -B build_eigen -DBUILD_TESTING=OFF -DCMAKE_INSTALL_PREFIX="$RUNNER_TEMP/eigen"
+          cmake --build build_eigen --target install
+          echo "CMAKE_PREFIX_PATH=$RUNNER_TEMP/eigen" >> "$GITHUB_ENV"
 
       - name: Install package
         run: uv sync
