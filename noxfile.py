@@ -96,13 +96,38 @@ def build_api_docs(session: nox.Session) -> None:
     session.install("sphinx")
     session.run(
         "sphinx-apidoc",
+        "--full",
+        "--append-syspath",
+        "-H",
+        "geofikpy",
+        "-A",
+        "Gerhard Reinerth",
+        "-V",
+        "0.1.0",
+        "--extensions",
+        "myst_parser,sphinx_copybutton,sphinx_autodoc_typehints",
         "-o",
-        "docs/api/",
+        "docs/",
         "--module-first",
         "--no-toc",
         "--force",
         "src/geofikpy",
     )
+
+    conf_py = Path("docs/conf.py")
+    if conf_py.exists():
+        content = conf_py.read_text(encoding="utf-8")
+        conf_py.write_text(
+            content.replace("html_theme = 'alabaster'", "html_theme = 'furo'"),
+            encoding="utf-8",
+        )
+
+    index_rst = Path("docs/index.rst")
+    if index_rst.exists():
+        content = index_rst.read_text(encoding="utf-8")
+        index_rst.write_text(
+            content.replace("`toctree`", "``toctree``"), encoding="utf-8"
+        )
 
 
 @nox.session(default=False)
