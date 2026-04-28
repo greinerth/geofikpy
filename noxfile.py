@@ -125,9 +125,13 @@ def build_api_docs(session: nox.Session) -> None:
     index_rst = Path("docs/index.rst")
     if index_rst.exists():
         content = index_rst.read_text(encoding="utf-8")
-        index_rst.write_text(
-            content.replace("`toctree`", "``toctree``"), encoding="utf-8"
+        content = content.replace("`toctree`", "``toctree``")
+        readme_include = (
+            "\n.. include:: ../README.md\n   :parser: myst_parser.sphinx_\n\n"
         )
+        if readme_include not in content:
+            content = content.replace(".. toctree::", readme_include + ".. toctree::")
+        index_rst.write_text(content, encoding="utf-8")
 
 
 @nox.session(default=False)
