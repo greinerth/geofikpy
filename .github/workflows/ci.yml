@@ -26,11 +26,11 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.x"
 
-      - uses: astral-sh/setup-uv@v8.2.0
+      - uses: astral-sh/setup-uv@v9.0.0
 
       - name: Install Eigen (Unix)
         if: runner.os != 'Windows'
@@ -55,7 +55,7 @@ jobs:
           cmake --build build_eigen --target install
           "CMAKE_PREFIX_PATH=$EigenPath" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
 
-      - uses: j178/prek-action@v2
+      - uses: j178/prek-action@v2.0.6
 
       - name: Run Pylint
         run: uvx nox -s pylint -- --output-format=github
@@ -79,12 +79,12 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@v7
         with:
           python-version: ${{ matrix.python-version }}
           allow-prereleases: true
 
-      - uses: astral-sh/setup-uv@v8.2.0
+      - uses: astral-sh/setup-uv@v9.0.0
 
       - name: Install Eigen (Unix)
         if: runner.os != 'Windows'
